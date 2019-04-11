@@ -17,6 +17,12 @@ namespace Test_EFSOL_1
 
         public static int lengh_num1_fractional;
         public static int lengh_num2_fractional;
+        public static int temp_dividend;
+      //  public static int dividend;
+
+
+        public static string quotient = "";
+        public static string result;
 
     }
 }
