@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Test_EFSOL_1
 {
     /// <summary>
@@ -20,18 +21,29 @@ namespace Test_EFSOL_1
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        double num1, num2;
+        //   double num1, num2;
+
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TextBox1.Text = TextBox1.Text.Replace(".", ",");
-            num1 = Convert.ToDouble(TextBox1.Text);
+           StatClass.num1 = Convert.ToDouble(TextBox1.Text);
             TextBox2.Text = TextBox2.Text.Replace(".", ",");
-            num2 = Convert.ToDouble(TextBox2.Text);
-            ResultLabel.Content = Math.Round((num1 - Math.Truncate(num1)), (Convert.ToString(num1).Length) );           //   почему это работает так как надо???
+            StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+            StatClass.num1_integer = Math.Truncate(StatClass.num1);
+            StatClass.num2_integer = Math.Truncate(StatClass.num2);
+            StatClass.num1_fractional = Math.Round((StatClass.num1 - StatClass.num1_integer), (Convert.ToString(StatClass.num1).Length));
+            StatClass.num2_fractional = Math.Round((StatClass.num2 - StatClass.num2_integer), (Convert.ToString(StatClass.num2).Length));
+            Divide.Division(StatClass.num1, StatClass.num2);
+            ResultLabel.Content = StatClass.num2;           //   почему это работает так как надо???
+
+           
+            { }
         /*    int z = 0;
             for (int i = 0; i < Convert.ToString(num1).Length; i++)           //   подсчёт символов в "строке"
             {
@@ -43,14 +55,14 @@ namespace Test_EFSOL_1
             }
             if (z != 0)
             {
-                ResultLabel.Content = (Convert.ToString(num1)).Length -2 ;
+                ResultLabel.Content = (Convert.ToString(num1)).Length -2 ;          //   если есть запятая в строке
             }
             else
             {
-                ResultLabel.Content = (Convert.ToString(num1)).Length;
+                ResultLabel.Content = (Convert.ToString(num1)).Length;          //   если есть запятая в строке
             }*/
 
 
-        }
+    }
     }
 }
