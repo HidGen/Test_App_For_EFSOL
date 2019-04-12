@@ -23,7 +23,7 @@ namespace Test_EFSOL_1
 
 
         public static string quotient = "";
-        public static string result;
+        public static string result = "";
         public static string useless_dividend;
 
 

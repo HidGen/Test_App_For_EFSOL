@@ -8,9 +8,10 @@ namespace Test_EFSOL_1
 {
     class Divide
     {
+
         public static void Division(/*double dividend, double divider*/)
         {
-            int dividend, divider, divider_length, dividend_length;
+            int dividend, divider, divider_length, dividend_length, temp_dividend_length;
             StatClass.quotient = "";
             if (StatClass.num1_fractional > 0)
             {
@@ -44,20 +45,24 @@ namespace Test_EFSOL_1
             StatClass.result = "";
             Console.WriteLine(dividend);
             Console.WriteLine(divider);
+            temp_dividend_length = dividend_length;
             while (StatClass.remain != 0)
             {
-                int c = 0;
+                 int c = 0;
                 while (StatClass.temp_dividend < divider)
                 {
                     try
                     {
-                        Console.WriteLine(c);
 
+                        Console.WriteLine(c);
                         StatClass.temp_dividend = Convert.ToInt32(Convert.ToString(dividend * Math.Pow(10, c)).Substring(0, divider_length));
                         Console.WriteLine("стат делимое" + StatClass.temp_dividend);
+                        StatClass.useless_dividend = (Convert.ToString((dividend * Math.Pow(10, c))).Remove(0, divider_length));
+
                         if (StatClass.temp_dividend < divider)
                         {
-                            c++;
+                           c++;
+                            Console.WriteLine("c после плюса" + c);
                             // Console.WriteLine(c);
 
                         }
@@ -66,20 +71,41 @@ namespace Test_EFSOL_1
                     }
                     catch
                     {
-                        if (StatClass.result == "")
+                        if ((temp_dividend_length < divider_length) && (2 > (divider_length - temp_dividend_length)))
                         {
                             StatClass.result += "0";
+                            Console.WriteLine((divider_length ) + "fsdgsfg" +temp_dividend_length + "jyj" +StatClass.result);
                         }
 
-                        if (StatClass.result.Contains('.'))
+                        if (StatClass.result == "")
+                        {
+                            StatClass.result += "0.";
+                        }
+                        else if (StatClass.result.EndsWith("."))
                         {
                             StatClass.result += "0";
+                        }                    
+                        else if (StatClass.result.Contains("0."))
+                        {
+                            StatClass.result += "";
                         }
-                        else { StatClass.result += "."; }
+                       else if (StatClass.result.Contains("."))
+                        {
+                         //   StatClass.result += "";
+                        }
+                        else
+                        {
+                            StatClass.result += ".";
+                        }
+
                         c++;
                     }
                 }
                 Console.WriteLine(StatClass.temp_dividend);
+                temp_dividend_length -= Convert.ToInt32(Convert.ToString(StatClass.temp_dividend).Length);
+                Console.WriteLine("длина" + temp_dividend_length);
+
+
 
                 int temp_divider = divider, i;
                 for (i = 1; StatClass.temp_dividend >= temp_divider; i++)
@@ -95,6 +121,15 @@ namespace Test_EFSOL_1
                 StatClass.temp_dividend -= temp_divider;
                 dividend = StatClass.temp_dividend;
                 Console.WriteLine("new temp_dividend=" + dividend);
+                temp_dividend_length += Convert.ToInt32(Convert.ToString(dividend).Length);
+                Console.WriteLine(" new длина" + temp_dividend_length);
+
+                if (StatClass.remain == dividend)
+                {
+                    StatClass.remain = 0;
+                    StatClass.result += Convert.ToString(("("+ (i-2) + ")"));
+                    break;
+                }
                 StatClass.remain = dividend;
                 dividend = Convert.ToInt32(Convert.ToString(dividend)+ StatClass.useless_dividend);
 
