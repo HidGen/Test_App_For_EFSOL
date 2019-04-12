@@ -17,8 +17,8 @@ namespace Test_EFSOL_1
 
         public static int lengh_num1_fractional;
         public static int lengh_num2_fractional;
-        public static int temp_dividend = 0;
-        public static int new_dividend;
+        public static string temp_dividend;
+      //  public static int new_dividend;
         public static int remain = 1;
 
 

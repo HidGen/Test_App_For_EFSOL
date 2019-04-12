@@ -40,8 +40,7 @@ namespace Test_EFSOL_1
             StatClass.num1_fractional = Math.Round((StatClass.num1 - StatClass.num1_integer), (Convert.ToString(StatClass.num1).Length));
             StatClass.num2_fractional = Math.Round((StatClass.num2 - StatClass.num2_integer), (Convert.ToString(StatClass.num2).Length));
             Divide.Division(/*StatClass.num1, StatClass.num2*/);
-            ResultLabel.Content = StatClass.result;           //   почему это работает так как надо???
-
+            ResultLabel.Content = StatClass.result;          
            
             { }
         /*    int z = 0;
