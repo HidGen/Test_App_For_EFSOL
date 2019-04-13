@@ -22,12 +22,15 @@ namespace Test_EFSOL_1
         public static int divider_length;
         public static int remain = 1;
         public static int dividend_length;
+        public static int temp_remain = 0;
+        public static int temp_remain2 = 0;
 
 
         public static string quotient = "";
         public static string result = "";
         public static string dividend;
         public static string divider;
+        public static string temp_d;
 
 
     }

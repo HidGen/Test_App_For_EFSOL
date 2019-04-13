@@ -8,42 +8,21 @@ namespace Test_EFSOL_1
 {
     class Divide
     {
+        public static void if_Null()
+        {
+            StatClass.temp_d.Remove(0, 2);
+            StatClass.result += "0,";
+
+        }
         public static void Get_Length()
         {
             StatClass.divider_length = Convert.ToInt32(StatClass.divider.Length);           //   получение длины делителя
             Console.WriteLine("divider_length " + StatClass.divider_length);
-            if (StatClass.dividend.Contains(","))         //   получение длины "рабочей" части делимого
-            {
-                StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length) - 1;
-                Console.WriteLine("dividend_length " + StatClass.dividend_length);
-            }
-            else
-            {
-                StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length);
-                Console.WriteLine("dividend_length " + StatClass.dividend_length);
-            }
-            if ((Convert.ToDouble(StatClass.divider)) > (Convert.ToDouble(StatClass.dividend)))         //   обработка случая, когда делимое меньше делителя и получение новой "рабочей" длины делимого
-            {
-                Console.WriteLine("делимое меньше");
-                if (StatClass.dividend[0] == '0')
-                {
-                    StatClass.dividend.Remove(0, 2);
-                    StatClass.result += "0,";
-                    //    dividend = dividend.Replace(",", "");
-                    StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length);
-                    Console.WriteLine("new dividend_length " + (StatClass.dividend_length - 1));
-                    Console.WriteLine("result " + StatClass.result);
-                }
-                else
-                {
-                    StatClass.result += "0,";
-                    StatClass.dividend = StatClass.dividend.Replace(",", "");
-                    StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length);
-                    Console.WriteLine("new dividend_length " + StatClass.dividend_length);
-                    Console.WriteLine("result " + StatClass.result);
-                }
-            }
-            }
+                       
+            StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length);         //   получение длины "рабочей" части делимого
+            Console.WriteLine("dividend_length " + StatClass.dividend_length);                  
+        }
+         
 
         public static void Get_Substring()
         {
@@ -53,24 +32,61 @@ namespace Test_EFSOL_1
                 Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
                 StatClass.dividend = StatClass.dividend.Remove(0, (StatClass.temp_dividend.Length));
                 Console.WriteLine("StatClass.dividend " + StatClass.dividend);
-                if (StatClass.temp_dividend.Contains(","))
+                if (StatClass.temp_dividend.Contains(","))          //   проверяем, наткнулись ли на строку и если наткнулись, то записываем её в результат и переприсваивем новое временное делимое без запятой
                 {
-                    StatClass.dividend.Replace(",", "");
-                    StatClass.temp_dividend = StatClass.dividend.Substring(0, StatClass.divider_length);
-                    Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
-                    StatClass.dividend = StatClass.dividend.Remove(0, StatClass.temp_dividend.Length);
-                    Console.WriteLine("StatClass.dividend " + StatClass.dividend);
-
+                    int i = 0;
+                    while ( StatClass.temp_dividend[i] != ',')
+                    {
+                        i++;  
+                    }
+                    StatClass.temp_dividend = StatClass.temp_dividend.Remove(i, 1);
+                    StatClass.dividend = StatClass.dividend.Insert(0, StatClass.temp_dividend);
+                    //  StatClass.dividend.Replace(",", "");
+                    if (StatClass.result == "")
+                    {
+                        StatClass.result += "0,";
+                    }
+                    else if (StatClass.result.EndsWith(","))
+                    {
+                        StatClass.result += "0";
+                    }
+                    else
+                    {
+                        StatClass.result += ",";
+                    }
+                    Console.WriteLine("rresult" + StatClass.result);
+                    Get_Length();
+                    Get_Substring();
+                }
+                else if (StatClass.result.EndsWith("0,"))
+                {
+                    StatClass.result += "0";
                 }
 
             }
             else
             {
-
-                while (StatClass.dividend_length > StatClass.divider_length)            //   доделать обработку вставок нулей и запятых
+                int count = 0;
+                while (StatClass.dividend_length >= StatClass.divider_length)           
                 {
-                    StatClass.temp_dividend = (StatClass.dividend + ("0")).Substring(0, StatClass.divider_length);
-                    Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
+                    try
+                    {
+                        StatClass.temp_dividend = (StatClass.dividend + ("0")).Substring(0, StatClass.divider_length + count);
+                        Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
+                    }
+                    catch
+                    {
+                        count++;
+                        if (StatClass.result.Contains(","))
+                        {
+                            StatClass.result += "0";
+                        }
+                        else
+                        {
+                            StatClass.result += ",";
+                        }
+                    }
+;
 
                 }
             }
@@ -95,43 +111,9 @@ namespace Test_EFSOL_1
             StatClass.divider = Convert.ToString(StatClass.num2 * Math.Pow(10, StatClass.lengh_num2_fractional));         //   приведение делителя
             Console.WriteLine("dividend" + StatClass.dividend);
             Console.WriteLine("divider" + StatClass.divider);
-            while (StatClass.remain != 0)
-            {
+
                 Get_Length();
-
             Get_Substring();
-
-         
-                if (Convert.ToInt32(StatClass.temp_dividend) > Convert.ToInt32(StatClass.divider))
-                {
-                    StatClass.temp_divider = Convert.ToInt32(StatClass.divider);
-                    int i;
-                    for (i = 1; Convert.ToInt32(StatClass.temp_dividend) >= Convert.ToInt32(StatClass.temp_divider); i++)
-                    {
-                        StatClass.temp_divider = Convert.ToInt32(StatClass.divider);
-                        StatClass.temp_divider *= i;
-                        Console.WriteLine("i=" + i);
-                        Console.WriteLine(" temp_divider=" + StatClass.temp_divider);
-
-                    }
-                    StatClass.result += (i - 2);
-                    Console.WriteLine("Result" + StatClass.result);
-                    StatClass.temp_divider = Convert.ToInt32(StatClass.divider);
-                    StatClass.remain = (Convert.ToInt32(StatClass.temp_dividend)) - ((Convert.ToInt32(StatClass.divider)) * (i - 2));
-                    Console.WriteLine("remain" + StatClass.remain);
-                    StatClass.dividend = StatClass.dividend.Insert(0, Convert.ToString(StatClass.remain));
-                    Console.WriteLine("new dividend " + StatClass.dividend);
-
-                }
-            }
-
-            
-
-        
-
-
-
-
 
 
 

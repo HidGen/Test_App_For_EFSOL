@@ -32,9 +32,20 @@ namespace Test_EFSOL_1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TextBox1.Text = TextBox1.Text.Replace(".", ",");
-           StatClass.num1 = Convert.ToDouble(TextBox1.Text);
+
+            StatClass.temp_d = TextBox1.Text;
+            if (TextBox1.Text[0] == '0')
+            {
+                Divide.if_Null();
+                StatClass.num1 = Convert.ToDouble(StatClass.temp_d);
+            }
+            else
+            {
+                StatClass.num1 = Convert.ToDouble(TextBox1.Text);
+            }
             TextBox2.Text = TextBox2.Text.Replace(".", ",");
             StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+
             StatClass.num1_integer = Math.Truncate(StatClass.num1);
             StatClass.num2_integer = Math.Truncate(StatClass.num2);
             StatClass.num1_fractional = Math.Round((StatClass.num1 - StatClass.num1_integer), (Convert.ToString(StatClass.num1).Length));
