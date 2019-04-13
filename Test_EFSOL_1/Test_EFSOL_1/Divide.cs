@@ -67,7 +67,7 @@ namespace Test_EFSOL_1
             else
             {
                 int count = 0;
-                while (StatClass.dividend_length >= StatClass.divider_length)           
+                while (StatClass.dividend_length < StatClass.divider_length)           
                 {
                     try
                     {
