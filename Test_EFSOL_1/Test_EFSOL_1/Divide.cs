@@ -34,28 +34,39 @@ namespace Test_EFSOL_1
                 Console.WriteLine("StatClass.dividend " + StatClass.dividend);
                 if (StatClass.temp_dividend.Contains(","))          //   проверяем, наткнулись ли на строку и если наткнулись, то записываем её в результат и переприсваивем новое временное делимое без запятой
                 {
-                    int i = 0;
-                    while ( StatClass.temp_dividend[i] != ',')
+                    if (StatClass.temp_dividend[0] == ',')
                     {
-                        i++;  
+                        StatClass.result += ",";
+                    }
+
+
+                    int i = 0;
+                    while (StatClass.temp_dividend[i] != ',')
+                    {
+                        i++;
                     }
                     StatClass.temp_dividend = StatClass.temp_dividend.Remove(i, 1);
                     StatClass.dividend = StatClass.dividend.Insert(0, StatClass.temp_dividend);
                     //  StatClass.dividend.Replace(",", "");
-                    if (StatClass.result == "")
-                    {
-                        StatClass.result += "0,";
-                        Console.WriteLine("1result" + StatClass.result);
-                    }
-                    else if (StatClass.result.EndsWith(","))
+
+
+                    if (StatClass.result.EndsWith(","))
                     {
                         StatClass.result += "0";
                         Console.WriteLine("2result" + StatClass.result);
                     }
                     else
+                    if (!StatClass.result.Contains("0,"))
                     {
-                        StatClass.result += ",";
+
+                        StatClass.result += "0,";
+                    
+                    Console.WriteLine("1result" + StatClass.result);
                     }
+                else
+                {
+                    StatClass.result += ",";
+                }
                     Console.WriteLine("rresult" + StatClass.result);
                     Get_Length();
                     Get_Substring(0);
@@ -138,6 +149,7 @@ namespace Test_EFSOL_1
             Console.WriteLine("5result" + StatClass.result);
             if ((Convert.ToInt32(StatClass.temp_dividend)) < (Convert.ToInt32(StatClass.divider)))
             {
+                StatClass.dividend = StatClass.temp_dividend;
                 Console.WriteLine("Witch_Bigger_IF");
                 if (StatClass.result == "")
                 {
@@ -175,6 +187,13 @@ namespace Test_EFSOL_1
             temp_D = Convert.ToInt32(StatClass.divider);
             StatClass.remain = temp_d - temp_D * (i - 2);
             Console.WriteLine("remain" + StatClass.remain);
+            if (StatClass.remain != 0)
+            {
+                StatClass.dividend = StatClass.dividend.Insert(0, Convert.ToString(StatClass.remain));
+
+            }
+            Console.WriteLine("dividend" + StatClass.dividend);
+
 
 
 
@@ -200,12 +219,15 @@ namespace Test_EFSOL_1
             StatClass.divider = Convert.ToString(StatClass.num2 * Math.Pow(10, StatClass.lengh_num2_fractional));         //   приведение делителя
             Console.WriteLine("dividend" + StatClass.dividend);
             Console.WriteLine("divider" + StatClass.divider);
+          
 
+            while (StatClass.dividend != "")
+            {
                 Get_Length();
-            Get_Substring(0);
-            Witch_Bigger();
-            Action();
-
+                Get_Substring(0);
+                Witch_Bigger();
+                Action();
+            }
 
 
         }           //   конец функции
