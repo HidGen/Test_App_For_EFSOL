@@ -24,9 +24,9 @@ namespace Test_EFSOL_1
         }
          
 
-        public static void Get_Substring()
+        public static void Get_Substring(int xyz)
         {
-            if (StatClass.dividend_length >= StatClass.divider_length)
+            if ((StatClass.dividend_length - xyz) >= StatClass.divider_length)
             {
                 StatClass.temp_dividend = StatClass.dividend.Substring(0, StatClass.divider_length);
                 Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
@@ -45,10 +45,12 @@ namespace Test_EFSOL_1
                     if (StatClass.result == "")
                     {
                         StatClass.result += "0,";
+                        Console.WriteLine("1result" + StatClass.result);
                     }
                     else if (StatClass.result.EndsWith(","))
                     {
                         StatClass.result += "0";
+                        Console.WriteLine("2result" + StatClass.result);
                     }
                     else
                     {
@@ -56,41 +58,128 @@ namespace Test_EFSOL_1
                     }
                     Console.WriteLine("rresult" + StatClass.result);
                     Get_Length();
-                    Get_Substring();
+                    Get_Substring(0);
                 }
-                else if (StatClass.result.EndsWith("0,"))
+                else if (StatClass.result.EndsWith("0,") && (xyz == 1))
                 {
                     StatClass.result += "0";
+                    Console.WriteLine("3result" + StatClass.result);
                 }
 
             }
             else
             {
                 int count = 0;
-                while (StatClass.dividend_length < StatClass.divider_length)           
+                while ((StatClass.dividend_length - xyz) < StatClass.divider_length)           
                 {
                     try
                     {
-                        StatClass.temp_dividend = (StatClass.dividend + ("0")).Substring(0, StatClass.divider_length + count);
+                        string qwerty = "0";
+                        int ytrewq = (-xyz);
+                        while ( ytrewq != count)
+                            {
+                            ytrewq++;
+                            qwerty += "0";
+
+                        }
+                        StatClass.temp_dividend = (StatClass.dividend + (qwerty)).Substring(0, StatClass.divider_length + count);
+                        count++;
                         Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
+                        //  Get_Length();
+                        StatClass.dividend_length = Convert.ToInt32(StatClass.temp_dividend.Length);
+                        if (xyz == 0)
+                        {
+                            if (StatClass.result == "")
+                            {
+                                StatClass.result += "0,";
+                            }
+                            else if (StatClass.result.Contains(","))
+                            {
+                                StatClass.result += "0";
+                            }
+                            else
+                            {
+                                StatClass.result += ",";
+                            }
+                            Console.WriteLine("rresult_try" + StatClass.result);
+                        }
                     }
                     catch
                     {
                         count++;
-                        if (StatClass.result.Contains(","))
+
+                        if (xyz == 0)
                         {
-                            StatClass.result += "0";
+                            if (StatClass.result == "")
+                            {
+                                StatClass.result += "0,";
+                            }
+                            else if (StatClass.result.Contains(","))
+                            {
+                                StatClass.result += "0";
+                                Console.WriteLine("4result" + StatClass.result);
+                            }
+                            else
+                            {
+                                StatClass.result += ",";
+                            }
                         }
-                        else
-                        {
-                            StatClass.result += ",";
-                        }
+                        Console.WriteLine("rresult_catch" + StatClass.result);
                     }
 ;
 
                 }
             }
         }
+
+        public static void Witch_Bigger()
+        {
+            Console.WriteLine("Witch_Bigger");
+            Console.WriteLine("5result" + StatClass.result);
+            if ((Convert.ToInt32(StatClass.temp_dividend)) < (Convert.ToInt32(StatClass.divider)))
+            {
+                Console.WriteLine("Witch_Bigger_IF");
+                if (StatClass.result == "")
+                {
+                    StatClass.result += "0,";
+                }
+                else if (StatClass.result.Contains(","))
+                {
+                    StatClass.result += "0";
+                }
+                else
+                {
+                    StatClass.result += ",";
+                }
+
+                Get_Substring(1);
+            }
+        }
+
+        public static void Action()
+        {
+            int temp_d, temp_D, i;
+            temp_d = Convert.ToInt32(StatClass.temp_dividend);
+            temp_D = Convert.ToInt32(StatClass.divider);
+
+            for (i = 1; temp_d >= temp_D; i++)
+            {
+                temp_D = Convert.ToInt32(StatClass.divider);
+                temp_D *= i;
+                Console.WriteLine("i=" + i);
+                Console.WriteLine(" temp_divider=" + temp_D);
+
+            }
+            StatClass.result += (i - 2);
+            Console.WriteLine("Result" + StatClass.result);
+            temp_D = Convert.ToInt32(StatClass.divider);
+            StatClass.remain = temp_d - temp_D * (i - 2);
+            Console.WriteLine("remain" + StatClass.remain);
+
+
+
+        }
+
         public static void Division()
         {
             
@@ -113,7 +202,9 @@ namespace Test_EFSOL_1
             Console.WriteLine("divider" + StatClass.divider);
 
                 Get_Length();
-            Get_Substring();
+            Get_Substring(0);
+            Witch_Bigger();
+            Action();
 
 
 
