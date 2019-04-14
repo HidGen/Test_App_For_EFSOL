@@ -60,7 +60,12 @@ namespace Test_EFSOL_1
             }
             else if (Combobox1.Text == "-")
             {
-
+                TextBox1.Text = TextBox1.Text.Replace(".", ",");
+                TextBox2.Text = TextBox2.Text.Replace(".", ",");
+                StatClass.num1 = Convert.ToDouble(TextBox1.Text);
+                StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+                Subtraction.Substract();
+                ResultLabel.Content = StatClass.result;
             }
             else
             {
