@@ -8,231 +8,143 @@ namespace Test_EFSOL_1
 {
     class Divide
     {
-        public static void if_Null()
+        public static int FloatHere()
         {
-            StatClass.temp_d.Remove(0, 2);
-            StatClass.result += "0,";
+            int increase = 1;
+            int in_num1 = StatClass.number1.IndexOf(',');
 
-        }
-        public static void Get_Length()
-        {
-            StatClass.divider_length = Convert.ToInt32(StatClass.divider.Length);           //   получение длины делителя
-            Console.WriteLine("divider_length " + StatClass.divider_length);
-                       
-            StatClass.dividend_length = Convert.ToInt32(StatClass.dividend.Length);         //   получение длины "рабочей" части делимого
-            Console.WriteLine("dividend_length " + StatClass.dividend_length);                  
-        }
-         
-
-        public static void Get_Substring(int xyz)
-        {
-            if ((StatClass.dividend_length - xyz) >= StatClass.divider_length)
+            Console.WriteLine(in_num1);
+            int in_num2 = StatClass.number2.IndexOf(','); ;
+            if (in_num1 != -1)
             {
-                StatClass.temp_dividend = StatClass.dividend.Substring(0, StatClass.divider_length);
-                Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
-                StatClass.dividend = StatClass.dividend.Remove(0, (StatClass.temp_dividend.Length));
-                Console.WriteLine("StatClass.dividend " + StatClass.dividend);
-                if (StatClass.temp_dividend.Contains(","))          //   проверяем, наткнулись ли на строку и если наткнулись, то записываем её в результат и переприсваивем новое временное делимое без запятой
+                in_num1 = StatClass.number1.Length - in_num1 - 1;
+            }
+            if (in_num2 != -1)
+            {
+                in_num2 = StatClass.number2.Length - in_num2 - 1;
+            }
+            if (in_num1 > in_num2)
+            {
+                for (int i = 1; i <= in_num1; i++)
                 {
-                    if (StatClass.temp_dividend[0] == ',')
+                    increase *= 10;
+                }
+            }
+            if (in_num1 < in_num2)
+            {
+                for (int i = 1; i <= in_num2; i++)
+                {
+                    increase *= 10;
+                }
+            }
+            return increase;
+        }
+        public static void DivisionNumbers()
+        {
+
+            StatClass.num1_integer = Convert.ToInt32(Math.Truncate(StatClass.numba1));
+            Console.WriteLine("num1_integer " + StatClass.num1_integer);
+            StatClass.num1_fractional = Math.Round((StatClass.numba1 - Convert.ToDouble(StatClass.num1_integer)), (Convert.ToString(StatClass.numba1).Length));
+            Console.WriteLine("num1_fractional " + StatClass.num1_fractional);
+            StatClass.num1_fractional_L = Convert.ToString(StatClass.num1_fractional).Remove(0, 2);
+            Console.WriteLine("num1_fractional_L " + StatClass.num1_fractional_L);
+
+            //        StatClass.operation = StatClass.number1.Remove(0, StatClass.number1.Length - 1);
+            //        StatClass.number1 = StatClass.number1.Remove(StatClass.number1.Length - 2, 2);
+            int e = FloatHere();
+            StatClass.num1 = Convert.ToDouble(StatClass.number1);
+            StatClass.num2 = Convert.ToDouble(StatClass.number2);
+            StatClass.num1 = StatClass.num1 * e;
+            StatClass.num2 = StatClass.num2 * e;
+            StatClass.number1 = Convert.ToString(StatClass.num1);
+            StatClass.number2 = Convert.ToString(StatClass.num2);
+           // bool stop = false;  // Остановка цикла
+            bool comma = false; //Переменная, которая определяет наличие запятой
+            int length_num2 = StatClass.number2.Length;
+            int divider = Convert.ToInt32(StatClass.number2); //Записываем делитель
+            int iteration = 1;
+            while (StatClass.number1 != "00")
+            {
+                int length_num1 = StatClass.number1.Length;
+                int c = 0;
+                if (length_num1 >= length_num2)
+                {
+                    int length_num = length_num2;
+                    string str_argument1 = StatClass.number1.Substring(0, length_num); //Обрезаем строку под размер делителя
+                    int dividend = Convert.ToInt32(str_argument1);
+                    if (dividend >= divider) //Если делимое больше или равно делителю
                     {
-                        StatClass.result += ",";
+                        c = dividend / divider;
+                        StatClass.result = StatClass.result + Convert.ToString(c);
+                        int ostatok = dividend - c * divider;
+                        StatClass.number1 = StatClass.number1.Remove(0, length_num);
+                        StatClass.number1 = StatClass.number1.Insert(0, Convert.ToString(ostatok));
+                        if (comma)
+                        {
+                            StatClass.number1 = StatClass.number1 + "0";
+                        }
                     }
-
-
-                    int i = 0;
-                    while (StatClass.temp_dividend[i] != ',')
+                    else  //Если делимое меньше делителя
                     {
-                        i++;
+                        length_num = length_num + 1;
+                        if (length_num <= length_num1) //Забираем из строки еще одно число
+                        {
+                            str_argument1 = StatClass.number1.Substring(0, length_num);
+                            dividend = Convert.ToInt32(str_argument1);
+                            c = dividend / divider;
+                            StatClass.result = StatClass.result + Convert.ToString(c);
+                            int ostatok = dividend - c * divider;
+                            StatClass.number1 = StatClass.number1.Remove(0, length_num);
+                            StatClass.number1 = StatClass.number1.Insert(0, Convert.ToString(ostatok));
+                            if (comma)
+                            {
+                                StatClass.number1 += "0";
+                            }
+                        }
+                        else //Добавляем еще 0 
+                        {
+                            StatClass.number1 += "0";
+                            if (!comma)
+                            {
+                                StatClass.result += ',';
+                                comma = true;
+                            }
+                            else
+                            {
+                                StatClass.result += "0";
+                            }
+                        }
                     }
-                    StatClass.temp_dividend = StatClass.temp_dividend.Remove(i, 1);
-                    StatClass.dividend = StatClass.dividend.Insert(0, StatClass.temp_dividend);
-                    //  StatClass.dividend.Replace(",", "");
-
-
-                    if (StatClass.result.EndsWith(","))
+                }
+                else
+                {
+                    if (!comma)
                     {
-                        StatClass.result += "0";
-                        Console.WriteLine("2result" + StatClass.result);
+                        Console.WriteLine(StatClass.number1);
+                        if (StatClass.result == null)
+                        {
+                            StatClass.result += "0";
+                        }
+                        else if ((!StatClass.result.Contains(",")) && (StatClass.result != null) && (StatClass.number1 == StatClass.num1_fractional_L))           //   вот такое условие для правильной расстановки нулей
+                        { StatClass.result += "0"; }
+                        
+                            StatClass.result += ",";
+                        
+
+                        comma = true;
                     }
                     else
-                    if (!StatClass.result.Contains("0,"))
                     {
-
-                        StatClass.result += "0,";
-                    
-                    Console.WriteLine("1result" + StatClass.result);
+                        StatClass.result += "0";
                     }
-                else
-                {
-                    StatClass.result += ",";
+                    StatClass.number1 += "0";
                 }
-                    Console.WriteLine("rresult" + StatClass.result);
-                    Get_Length();
-                    Get_Substring(0);
-                }
-                else if (StatClass.result.EndsWith("0,") && (xyz == 1))
-                {
-                    StatClass.result += "0";
-                    Console.WriteLine("3result" + StatClass.result);
-                }
-
-            }
-            else
-            {
-                int count = 0;
-                while ((StatClass.dividend_length - xyz) < StatClass.divider_length)           
-                {
-                    try
-                    {
-                        string qwerty = "0";
-                        int ytrewq = (-xyz);
-                        while ( ytrewq != count)
-                            {
-                            ytrewq++;
-                            qwerty += "0";
-
-                        }
-                        StatClass.temp_dividend = (StatClass.dividend + (qwerty)).Substring(0, StatClass.divider_length + count);
-                        count++;
-                        Console.WriteLine("StatClass.temp_dividend " + StatClass.temp_dividend);
-                        //  Get_Length();
-                        StatClass.dividend_length = Convert.ToInt32(StatClass.temp_dividend.Length);
-                        if (xyz == 0)
-                        {
-                            if (StatClass.result == "")
-                            {
-                                StatClass.result += "0,";
-                            }
-                            else if (StatClass.result.Contains(","))
-                            {
-                                StatClass.result += "0";
-                            }
-                            else
-                            {
-                                StatClass.result += ",";
-                            }
-                            Console.WriteLine("rresult_try" + StatClass.result);
-                        }
-                    }
-                    catch
-                    {
-                        count++;
-
-                        if (xyz == 0)
-                        {
-                            if (StatClass.result == "")
-                            {
-                                StatClass.result += "0,";
-                            }
-                            else if (StatClass.result.Contains(","))
-                            {
-                                StatClass.result += "0";
-                                Console.WriteLine("4result" + StatClass.result);
-                            }
-                            else
-                            {
-                                StatClass.result += ",";
-                            }
-                        }
-                        Console.WriteLine("rresult_catch" + StatClass.result);
-                    }
-;
-
-                }
+                /* if (StatClass.number1 == "00")
+                 {
+                     break;
+                 }*/
+                iteration++;
             }
         }
-
-        public static void Witch_Bigger()
-        {
-            Console.WriteLine("Witch_Bigger");
-            Console.WriteLine("5result" + StatClass.result);
-            if ((Convert.ToInt32(StatClass.temp_dividend)) < (Convert.ToInt32(StatClass.divider)))
-            {
-                StatClass.dividend = StatClass.temp_dividend;
-                Console.WriteLine("Witch_Bigger_IF");
-                if (StatClass.result == "")
-                {
-                    StatClass.result += "0,";
-                }
-                else if (StatClass.result.Contains(","))
-                {
-                    StatClass.result += "0";
-                }
-                else
-                {
-                    StatClass.result += ",";
-                }
-
-                Get_Substring(1);
-            }
-        }
-
-        public static void Action()
-        {
-            int temp_d, temp_D, i;
-            temp_d = Convert.ToInt32(StatClass.temp_dividend);
-            temp_D = Convert.ToInt32(StatClass.divider);
-
-            for (i = 1; temp_d >= temp_D; i++)
-            {
-                temp_D = Convert.ToInt32(StatClass.divider);
-                temp_D *= i;
-                Console.WriteLine("i=" + i);
-                Console.WriteLine(" temp_divider=" + temp_D);
-
-            }
-            StatClass.result += (i - 2);
-            Console.WriteLine("Result" + StatClass.result);
-            temp_D = Convert.ToInt32(StatClass.divider);
-            StatClass.remain = temp_d - temp_D * (i - 2);
-            Console.WriteLine("remain" + StatClass.remain);
-            if (StatClass.remain != 0)
-            {
-                StatClass.dividend = StatClass.dividend.Insert(0, Convert.ToString(StatClass.remain));
-
-            }
-            Console.WriteLine("dividend" + StatClass.dividend);
-
-
-
-
-        }
-
-        public static void Division()
-        {
-            
-            
-            StatClass.quotient = "";
-            StatClass.result = "";          //   обнуление результата
-            if (StatClass.num2_fractional > 0)          //   корректное получение кол-ва знаков после запятой
-            {
-                StatClass.lengh_num2_fractional = Convert.ToString(StatClass.num2_fractional).Length - 2;
-                Console.WriteLine("кол-во знаков после запятой в делитете " + StatClass.lengh_num2_fractional);
-            }
-            else
-            {
-                StatClass.lengh_num2_fractional = 0;
-                Console.WriteLine("кол-во знаков после запятой в делитете " + StatClass.lengh_num2_fractional);
-            }
-            StatClass.dividend = Convert.ToString(StatClass.num1 * Math.Pow(10, StatClass.lengh_num2_fractional));            //   приведение делимого
-            StatClass.divider = Convert.ToString(StatClass.num2 * Math.Pow(10, StatClass.lengh_num2_fractional));         //   приведение делителя
-            Console.WriteLine("dividend" + StatClass.dividend);
-            Console.WriteLine("divider" + StatClass.divider);
-          
-
-            while (StatClass.dividend != "")
-            {
-                Get_Length();
-                Get_Substring(0);
-                Witch_Bigger();
-                Action();
-            }
-
-
-        }           //   конец функции
-
-
-        
     }
 }

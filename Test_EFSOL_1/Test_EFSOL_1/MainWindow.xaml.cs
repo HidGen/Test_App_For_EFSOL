@@ -31,48 +31,45 @@ namespace Test_EFSOL_1
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TextBox1.Text = TextBox1.Text.Replace(".", ",");
-
-            StatClass.temp_d = TextBox1.Text;
-            if (TextBox1.Text[0] == '0')
+            if (Combobox1.Text == "÷")
             {
-                Divide.if_Null();
-                StatClass.num1 = Convert.ToDouble(StatClass.temp_d);
+                StatClass.number1 = TextBox1.Text;
+                StatClass.numba1 = Convert.ToDouble(TextBox1.Text);
+                StatClass.number2 = TextBox2.Text;
+                Divide.DivisionNumbers(/*StatClass.num1, StatClass.num2*/);
+                ResultLabel.Content = StatClass.result;
             }
-            else
+            else if (Combobox1.Text == "*")
             {
+                TextBox1.Text = TextBox1.Text.Replace(".", ",");
+                TextBox2.Text = TextBox2.Text.Replace(".", ",");
                 StatClass.num1 = Convert.ToDouble(TextBox1.Text);
-            }
-            TextBox2.Text = TextBox2.Text.Replace(".", ",");
-            StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+                StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+               ResultLabel.Content = Multiplication.Multiplicate();
 
-            StatClass.num1_integer = Math.Truncate(StatClass.num1);
-            StatClass.num2_integer = Math.Truncate(StatClass.num2);
-            StatClass.num1_fractional = Math.Round((StatClass.num1 - StatClass.num1_integer), (Convert.ToString(StatClass.num1).Length));
-            StatClass.num2_fractional = Math.Round((StatClass.num2 - StatClass.num2_integer), (Convert.ToString(StatClass.num2).Length));
-            Divide.Division(/*StatClass.num1, StatClass.num2*/);
-            ResultLabel.Content = StatClass.result;          
-           
-            { }
-        /*    int z = 0;
-            for (int i = 0; i < Convert.ToString(num1).Length; i++)           //   подсчёт символов в "строке"
-            {
-                if (Convert.ToString(num1)[i] == ',')
-                {
-                    
-                    z++;
-                }
             }
-            if (z != 0)
+            else if (Combobox1.Text == "+")
             {
-                ResultLabel.Content = (Convert.ToString(num1)).Length -2 ;          //   если есть запятая в строке
+                TextBox1.Text = TextBox1.Text.Replace(".", ",");
+                TextBox2.Text = TextBox2.Text.Replace(".", ",");
+                StatClass.num1 = Convert.ToDouble(TextBox1.Text);
+                StatClass.num2 = Convert.ToDouble(TextBox2.Text);
+                Addition.Add();
+                ResultLabel.Content = StatClass.result;
+
+            }
+            else if (Combobox1.Text == "-")
+            {
+
             }
             else
             {
-                ResultLabel.Content = (Convert.ToString(num1)).Length;          //   если есть запятая в строке
-            }*/
+                MessageBox.Show("Не выбранно действие!");
+                return;
+            }
 
 
-    }
+
+        }
     }
 }
