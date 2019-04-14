@@ -76,6 +76,7 @@ namespace Test_EFSOL_1
 
             public static void Add()
         {
+            StatClass.result = "";
             Get_Parts();
             Get_Same_Int();
             Console.WriteLine("StatClass.num1_integer_s " + StatClass.num1_integer_s);
@@ -87,7 +88,67 @@ namespace Test_EFSOL_1
             Console.WriteLine("number1 " + StatClass.number1);
             Console.WriteLine("number2 " + StatClass.number2);
 
-            
+            int counter = StatClass.number1.Length - 1;
+            Console.WriteLine("counter " + counter);
+         //   Console.WriteLine("counter123 " + StatClass.number1[6]);
+
+            while (counter != -1)
+            { string temp_s_1, temp_s_2;
+                int temp_11, temp_12, summ;
+                try
+                {
+                    Console.WriteLine("counter123 " + StatClass.number1[counter]);
+                    char i1 = StatClass.number1[counter];
+                    Console.WriteLine("temp_1  " + i1);
+                    temp_s_1 = Convert.ToString(i1);
+                    temp_11 = Convert.ToInt16(temp_s_1);
+                    Console.WriteLine("temp_1afdhsf  " + temp_11);
+
+                     i1 = StatClass.number2[counter];
+                    Console.WriteLine("temp_2  " + i1);
+                    temp_s_2 = Convert.ToString(i1);
+                    temp_12 = Convert.ToInt16(temp_s_2);
+                    Console.WriteLine("temp_1afdhsf  " + temp_12);
+
+                    summ = temp_11 + temp_12 + StatClass.reg;
+                    if (summ > 9)
+                    {
+                        summ %= 10;
+                        StatClass.reg = 1;
+                    }
+                    else
+                    {
+                        StatClass.reg = 0;
+                    }
+
+                    if (StatClass.result == "")
+                    {
+                        StatClass.result = Convert.ToString(summ);
+                        Console.WriteLine("result  " + StatClass.result);
+                    }
+                    else
+                    {
+                        StatClass.result = StatClass.result.Insert(0, Convert.ToString(summ));
+                        Console.WriteLine("result  " + StatClass.result);
+                    }
+
+                  
+
+                }
+                catch
+                {
+                    StatClass.result = StatClass.result.Insert(0, ",");
+                }
+
+
+                counter--;
+
+                if ((counter == -1) && (StatClass.reg == 1))
+                {
+                    StatClass.result = StatClass.result.Insert(0, "1");
+                }
+            }
+
         }
 
     }

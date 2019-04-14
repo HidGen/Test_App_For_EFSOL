@@ -52,6 +52,8 @@ namespace Test_EFSOL_1
         public static string num2_fractional_s;
 
         public static string num1_fractional_L;
+        public static int reg;
+
 
 
     }
