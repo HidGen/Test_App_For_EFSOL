@@ -115,7 +115,7 @@ namespace Test_EFSOL_1
                     summ = temp_11 - temp_12 - StatClass.reg;
                     if (summ < 0)
                     {
-                        summ = 9;
+                        summ = (temp_11+ 10) - temp_12 - StatClass.reg;
                         StatClass.reg = 1;
                     }
                     else
@@ -147,8 +147,18 @@ namespace Test_EFSOL_1
 
                 if ((counter == -1) && (StatClass.reg == 1))
                 {
-                    StatClass.result = StatClass.result.Insert(0, "1");
+                 //   StatClass.result = StatClass.result.Insert(0, "1");
                 }
+
+                if ((StatClass.num1_integer < StatClass.num2_integer) && (counter == -1))
+                {
+                    double i;
+                   i = Math.Pow(10, StatClass.num1_integer_s.Length);
+
+                    StatClass.result = Convert.ToString( (Convert.ToDouble(StatClass.result)) - i);
+                }
+
+
             }
 
         }
