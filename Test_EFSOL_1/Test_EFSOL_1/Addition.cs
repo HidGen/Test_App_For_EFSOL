@@ -11,14 +11,14 @@ namespace Test_EFSOL_1
         public static void Get_Parts()
         {
             StatClass.num1_integer = Convert.ToInt32(Math.Truncate(StatClass.num1));
-            Console.WriteLine("num1_integer " + StatClass.num1_integer);
+  //          Console.WriteLine("num1_integer " + StatClass.num1_integer);
             StatClass.num1_fractional = Math.Round((StatClass.num1 - Convert.ToDouble(StatClass.num1_integer)), (Convert.ToString(StatClass.num1).Length));
-            Console.WriteLine("num1_fractional " + StatClass.num1_fractional);
+  //          Console.WriteLine("num1_fractional " + StatClass.num1_fractional);
 
             StatClass.num2_integer = Convert.ToInt32(Math.Truncate(StatClass.num2));
-            Console.WriteLine("num2_integer " + StatClass.num2_integer);
+  //          Console.WriteLine("num2_integer " + StatClass.num2_integer);
             StatClass.num2_fractional = Math.Round((StatClass.num2 - Convert.ToDouble(StatClass.num2_integer)), (Convert.ToString(StatClass.num2).Length));
-            Console.WriteLine("num2_fractional " + StatClass.num2_fractional);
+  //          Console.WriteLine("num2_fractional " + StatClass.num2_fractional);
         }
 
         public static void Get_Same_Int()
@@ -79,17 +79,17 @@ namespace Test_EFSOL_1
             StatClass.result = "";
             Get_Parts();
             Get_Same_Int();
-            Console.WriteLine("StatClass.num1_integer_s " + StatClass.num1_integer_s);
-            Console.WriteLine("num2_integer_s " + StatClass.num2_integer_s);
+    //        Console.WriteLine("StatClass.num1_integer_s " + StatClass.num1_integer_s);
+   //         Console.WriteLine("num2_integer_s " + StatClass.num2_integer_s);
             Get_Same_Fractional(); 
-            Console.WriteLine("StatClass.num1_fractional_s " + StatClass.num1_fractional_s);
-            Console.WriteLine("num2_fractional_s " + StatClass.num2_fractional_s);
+  //          Console.WriteLine("StatClass.num1_fractional_s " + StatClass.num1_fractional_s);
+   //         Console.WriteLine("num2_fractional_s " + StatClass.num2_fractional_s);
             Get_Ready();
-            Console.WriteLine("number1 " + StatClass.number1);
-            Console.WriteLine("number2 " + StatClass.number2);
+  //          Console.WriteLine("number1 " + StatClass.number1);
+  //          Console.WriteLine("number2 " + StatClass.number2);
 
             int counter = StatClass.number1.Length - 1;
-            Console.WriteLine("counter " + counter);
+   //         Console.WriteLine("counter " + counter);
          //   Console.WriteLine("counter123 " + StatClass.number1[6]);
 
             while (counter != -1)
@@ -97,18 +97,18 @@ namespace Test_EFSOL_1
                 int temp_11, temp_12, summ;
                 try
                 {
-                    Console.WriteLine("counter123 " + StatClass.number1[counter]);
+       //             Console.WriteLine("counter123 " + StatClass.number1[counter]);
                     char i1 = StatClass.number1[counter];
-                    Console.WriteLine("temp_1  " + i1);
+       //             Console.WriteLine("temp_1  " + i1);
                     temp_s_1 = Convert.ToString(i1);
                     temp_11 = Convert.ToInt16(temp_s_1);
-                    Console.WriteLine("temp_1afdhsf  " + temp_11);
+       //             Console.WriteLine("temp_1afdhsf  " + temp_11);
 
                      i1 = StatClass.number2[counter];
-                    Console.WriteLine("temp_2  " + i1);
+     //               Console.WriteLine("temp_2  " + i1);
                     temp_s_2 = Convert.ToString(i1);
                     temp_12 = Convert.ToInt16(temp_s_2);
-                    Console.WriteLine("temp_1afdhsf  " + temp_12);
+      //              Console.WriteLine("temp_1afdhsf  " + temp_12);
 
                     summ = temp_11 + temp_12 + StatClass.reg;
                     if (summ > 9)
@@ -124,12 +124,12 @@ namespace Test_EFSOL_1
                     if (StatClass.result == "")
                     {
                         StatClass.result = Convert.ToString(summ);
-                        Console.WriteLine("result  " + StatClass.result);
+        //                Console.WriteLine("result  " + StatClass.result);
                     }
                     else
                     {
                         StatClass.result = StatClass.result.Insert(0, Convert.ToString(summ));
-                        Console.WriteLine("result  " + StatClass.result);
+         //               Console.WriteLine("result  " + StatClass.result);
                     }
 
                   

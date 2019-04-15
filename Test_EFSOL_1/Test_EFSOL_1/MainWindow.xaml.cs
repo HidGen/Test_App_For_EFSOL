@@ -31,6 +31,34 @@ namespace Test_EFSOL_1
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            StatClass.number1 = null;
+            StatClass.number2 = null;
+            StatClass.result = null;
+
+            StatClass.summ = 0;
+
+            StatClass.num1 = 0;
+            StatClass.num2 = 0;
+            StatClass.numba1 = 0;
+
+            StatClass.num1_integer = 0;
+            StatClass.num1_fractional = 0;
+            StatClass.num2_integer = 0;
+            StatClass.num2_fractional = 0;
+
+            StatClass.num1_integer_s = null;
+            StatClass.num1_fractional_s = null;
+            StatClass.num2_integer_s = null;
+            StatClass.num2_fractional_s = null;
+            StatClass.num1_fractional_l = 0;
+            StatClass.num2_fractional_l = 0;
+
+            StatClass.fractional_l = 0;
+
+            StatClass.num1_fractional_L = null;
+            StatClass.reg = 0;
+
+
             if (Combobox1.Text == "÷")
             {
                 StatClass.number1 = TextBox1.Text;
@@ -45,8 +73,8 @@ namespace Test_EFSOL_1
                 TextBox2.Text = TextBox2.Text.Replace(".", ",");
                 StatClass.num1 = Convert.ToDouble(TextBox1.Text);
                 StatClass.num2 = Convert.ToDouble(TextBox2.Text);
-               ResultLabel.Content = Multiplication.Multiplicate();
-
+                Multiplication.Multiplicate();
+                ResultLabel.Content = StatClass.result;
             }
             else if (Combobox1.Text == "+")
             {

@@ -35,7 +35,8 @@ namespace Test_EFSOL_1
         public static string number1;
         public static string number2;
         public static string result;
-        public static string operation;
+
+        public static double summ;
 
         public static double num1;
         public static double num2;
@@ -50,6 +51,10 @@ namespace Test_EFSOL_1
         public static string num1_fractional_s;
         public static string num2_integer_s;
         public static string num2_fractional_s;
+        public static int num1_fractional_l;
+        public static int num2_fractional_l;
+
+        public static int fractional_l;
 
         public static string num1_fractional_L;
         public static int reg;

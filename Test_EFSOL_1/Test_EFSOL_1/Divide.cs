@@ -13,7 +13,7 @@ namespace Test_EFSOL_1
             int increase = 1;
             int in_num1 = StatClass.number1.IndexOf(',');
 
-            Console.WriteLine(in_num1);
+     //       Console.WriteLine(in_num1);
             int in_num2 = StatClass.number2.IndexOf(','); ;
             if (in_num1 != -1)
             {
@@ -43,11 +43,11 @@ namespace Test_EFSOL_1
         {
 
             StatClass.num1_integer = Convert.ToInt32(Math.Truncate(StatClass.numba1));
-            Console.WriteLine("num1_integer " + StatClass.num1_integer);
+      //      Console.WriteLine("num1_integer " + StatClass.num1_integer);
             StatClass.num1_fractional = Math.Round((StatClass.numba1 - Convert.ToDouble(StatClass.num1_integer)), (Convert.ToString(StatClass.numba1).Length));
-            Console.WriteLine("num1_fractional " + StatClass.num1_fractional);
+     //       Console.WriteLine("num1_fractional " + StatClass.num1_fractional);
             StatClass.num1_fractional_L = Convert.ToString(StatClass.num1_fractional).Remove(0, 2);
-            Console.WriteLine("num1_fractional_L " + StatClass.num1_fractional_L);
+     //       Console.WriteLine("num1_fractional_L " + StatClass.num1_fractional_L);
 
             //        StatClass.operation = StatClass.number1.Remove(0, StatClass.number1.Length - 1);
             //        StatClass.number1 = StatClass.number1.Remove(StatClass.number1.Length - 2, 2);
@@ -120,7 +120,7 @@ namespace Test_EFSOL_1
                 {
                     if (!comma)
                     {
-                        Console.WriteLine(StatClass.number1);
+      //                  Console.WriteLine(StatClass.number1);
                         if (StatClass.result == null)
                         {
                             StatClass.result += "0";

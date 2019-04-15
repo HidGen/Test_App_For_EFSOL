@@ -8,24 +8,51 @@ namespace Test_EFSOL_1
 {
     class Multiplication
     {
-        public static string Multiplicate()
+        public static void Multiplicate()
         {
-            string s = umnozh(StatClass.num1, StatClass.num2);
-           return  s;
-        }
+            Addition.Get_Parts();
 
-        private static string umnozh(double mnj1, double mnj2)
-        {
-            string add = "";
-            string result = "";
-            foreach (char c in mnj1.ToString().Reverse())
+            StatClass.num1_fractional_s = Convert.ToString(StatClass.num1_fractional);
+            StatClass.num2_fractional_s = Convert.ToString(StatClass.num2_fractional);
+
+
+            StatClass.num1_fractional_l = StatClass.num1_fractional_s.Length - 2;
+     //       Console.WriteLine("length1" + StatClass.num2_fractional_l);
+            StatClass.num2_fractional_l = StatClass.num2_fractional_s.Length - 2;
+   //         Console.WriteLine("length2" + StatClass.num2_fractional_l);
+            StatClass.fractional_l = StatClass.num1_fractional_l + StatClass.num2_fractional_l;
+   //         Console.WriteLine("final length " + StatClass.fractional_l);
+
+            StatClass.num1 = StatClass.num1 * Math.Pow(10, StatClass.num1_fractional_l);
+    //        Console.WriteLine("Full1 " + StatClass.num1);
+            StatClass.num2 = StatClass.num2 * Math.Pow(10, StatClass.num2_fractional_l);
+    //        Console.WriteLine("Full1 " + StatClass.num2);
+
+            int counter = Convert.ToString(StatClass.num1).Length - 1;
+    //        Console.WriteLine("counter " + counter);
+            int i = 0;
+            while (counter != -1)
             {
-                result += char.GetNumericValue(c) * mnj2 + add + "\r\n" + "+" + "\r\n";
-                add += "0";
+                string temp_s_1;
+                int temp_11;
+
+                char i1 = Convert.ToString(StatClass.num1)[counter];
+    //            Console.WriteLine("temp_1  " + i1);
+                temp_s_1 = Convert.ToString(i1);
+                temp_11 = Convert.ToInt16(temp_s_1);
+     //           Console.WriteLine("temp_1afdhsf  " + temp_11);
+
+                StatClass.summ += temp_11 * StatClass.num2 * Math.Pow(10, i++);
+      //          Console.WriteLine("summ   " + StatClass.summ);
+
+
+
+
+                counter--;
             }
-            result += "__________\r\n";
-            result += mnj1 * mnj2;
-            return result;
+
+            StatClass.result = Convert.ToString(StatClass.summ / Math.Pow(10, StatClass.fractional_l));
+
         }
     }
 }
