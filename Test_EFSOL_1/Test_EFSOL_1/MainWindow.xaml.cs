@@ -34,13 +34,11 @@ namespace Test_EFSOL_1
             StatClass.number1 = null;
             StatClass.number2 = null;
             StatClass.result = null;
-
+            StatClass.remain = null;
             StatClass.summ = 0;
 
             StatClass.num1 = 0;
             StatClass.num2 = 0;
-            StatClass.numba1 = 0;
-
             StatClass.num1_integer = 0;
             StatClass.num1_fractional = 0;
             StatClass.num2_integer = 0;
@@ -61,8 +59,11 @@ namespace Test_EFSOL_1
 
             if (Combobox1.Text == "÷")
             {
+                TextBox1.Text = TextBox1.Text.Replace(".", ",");
+                TextBox2.Text = TextBox2.Text.Replace(".", ",");
+
                 StatClass.number1 = TextBox1.Text;
-                StatClass.numba1 = Convert.ToDouble(TextBox1.Text);
+            //    StatClass.numba1 = Convert.ToDouble(TextBox1.Text);
                 StatClass.number2 = TextBox2.Text;
                 Divide.DivisionNumbers(/*StatClass.num1, StatClass.num2*/);
                 ResultLabel.Content = StatClass.result;
